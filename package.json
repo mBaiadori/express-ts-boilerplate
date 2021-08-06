@@ -1,0 +1,36 @@
+{
+  "name": "express-boilerplate",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "scripts": {
+    "start": "node NODE_ENV=production --optimize_for_size -r tsconfig-paths/register -r ts-node/register src/main/index.ts",
+    "deploy": "node NODE_ENV=production --optimize_for_size -r tsconfig-paths/register -r ts-node/register src/main/index.ts",
+    "dev": "ts-node-dev NODE_ENV=development -r dotenv/config -r tsconfig-paths/register --inspect --ignore-watch node_modules src/main/index.ts",
+    "format": "eslint --fix src/**/*",
+    "test": "jest --coverage",
+    "test:unit": "jest --watch"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/jest": "^26.0.24",
+    "@types/node": "^16.4.13",
+    "@types/supertest": "^2.0.11",
+    "@typescript-eslint/eslint-plugin": "^4.29.0",
+    "@typescript-eslint/parser": "^4.29.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "jest": "^27.0.6",
+    "prettier": "^2.3.2",
+    "supertest": "^6.1.4",
+    "ts": "^0.2.2",
+    "ts-jest": "^27.0.4",
+    "typescript": "^4.3.5"
+  }
+}
