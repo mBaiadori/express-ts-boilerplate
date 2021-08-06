@@ -1,17 +1,77 @@
 {
   "env": {
-    "browser": true,
-    "es2021": true
+    "es6": true,
+    "node": true,
+    "jest": true
   },
-  "extends": ["airbnb-base"],
+  "extends": [
+    "airbnb-base",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 12,
+    "ecmaVersion": 11,
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint"],
+  "plugins": [
+    "@typescript-eslint",
+    "prettier",
+    "eslint-plugin-import-helpers"
+  ],
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "directory": "packages/server/*/tsconfig.json"
+      }
+    }
+  },
   "rules": {
-    "single": "off",
-    "quotes": "off"
+    "no-plusplus": "off",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never"
+      }
+    ],
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "_"
+      }
+    ],
+    "import-helpers/order-imports": [
+      "warn",
+      {
+        "newlinesBetween": "always", // new line between groups
+        "groups": [
+          "module",
+          "/^@server/shared/",
+          "/^@/",
+          [
+            "parent",
+            "sibling",
+            "index"
+          ]
+        ],
+        "alphabetize": {
+          "order": "asc",
+          "ignoreCase": true
+        }
+      }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "semi": true,
+        "singleQuote": true,
+        "arrowParens": "avoid",
+        "trailingComma": "none",
+        "tabWidth": 2,
+        "endOfLine": "auto",
+        "printWidth": 120
+      }
+    ]
   }
 }
