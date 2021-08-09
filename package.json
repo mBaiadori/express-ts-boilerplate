@@ -4,8 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "tsc --project ./  && cross-env NODE_ENV=production node --optimize_for_size --max_old_space_size=460 --gc_interval=100  dist/index.js",
-    "start": "cross-env NODE_ENV=production node --optimize_for_size dist/index.js",
+    "build": "tsc --project ./",
+    "start:heroku": "cross-env NODE_ENV=production node --optimize_for_size --max_old_space_size=460 --gc_interval=100  dist/index.js",
+    "start": "cross-env NODE_ENV=production node dist/index.js",
     "dev": "cross-env NODE_ENV=development ts-node-dev  -r dotenv/config -r tsconfig-paths/register --inspect --ignore-watch node_modules src/index.ts ",
     "format": "eslint --fix src/**/*",
     "test": "jest --coverage",
