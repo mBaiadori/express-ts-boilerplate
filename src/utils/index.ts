@@ -1,27 +1,46 @@
+let f = 0
 export const func = async (): Promise<boolean> => {
-  let f = 0;
-  f += 1;
-  console.log('func', f);
-  return true;
-};
+  f++
+  console.log('func', f)
+  return true
+}
 
 const factory = () => {
+  let r = 0
   const remove = async (): Promise<boolean> => {
-    let r = 0;
-    r += 1;
-    console.log('remove', r);
-    return true;
-  };
-  const create = async (): Promise<boolean> => {
-    let c = 0;
-    c += 1;
-    console.log('create', c);
-    return true;
-  };
+    r++
+    console.log('remove', r)
+    return true
+  }
+  let c = 0
+  const create = async (v: string): Promise<string> => {
+    c++
+    console.log(v, c)
+    return v
+  }
   return {
     remove,
     create
-  };
-};
+  }
+}
 
-export default factory();
+export class Clase {
+  c = 0
+  async create(v) {
+    this.c++
+    console.log(v, this.c)
+  }
+}
+
+// const r = factory();
+const r = new Clase()
+
+// setInterval(() => {
+//   r.create('clase');
+// }, 2000)
+
+// setInterval(() => {
+//   func();
+// }, 2000)
+
+export default factory

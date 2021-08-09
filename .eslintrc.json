@@ -9,6 +9,10 @@
     "plugin:@typescript-eslint/recommended",
     "prettier"
   ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 11,
@@ -19,26 +23,34 @@
     "prettier",
     "eslint-plugin-import-helpers"
   ],
-  "settings": {
-    "import/resolver": {
-      "typescript": {
-        "directory": "packages/server/*/tsconfig.json"
-      }
-    }
-  },
   "rules": {
+    "no-new": "off",
     "no-plusplus": "off",
+    "dot-notation": "off",
+    "no-prototype-builtins": "off",
+    "no-restricted-syntax": "off",
+    "max-classes-per-file": "off",
+    "no-console": "warn",
+    "no-shadow": "warn",
+    "no-useless-constructor": "warn",
+    "no-unused-vars": "warn",
+    // Imports
+    "import/prefer-default-export": "off",
+    "import/no-unresolved": "on",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*.test.ts",
+          "**/*.spec.ts"
+        ]
+      }
+    ],
     "import/extensions": [
       "error",
       "ignorePackages",
       {
         "ts": "never"
-      }
-    ],
-    "@typescript-eslint/no-unused-vars": [
-      "warn",
-      {
-        "argsIgnorePattern": "_"
       }
     ],
     "import-helpers/order-imports": [
@@ -61,6 +73,58 @@
         }
       }
     ],
+    // @types
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/explicit-function-return-type": [
+      "off"
+    ],
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "_"
+      }
+    ],
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "interface",
+        "format": [
+          "PascalCase"
+        ],
+        "custom": {
+          "regex": "^I[A-Z]",
+          "match": true
+        }
+      },
+      {
+        "selector": "typeLike",
+        "format": [
+          "PascalCase"
+        ],
+        "custom": {
+          "regex": "^T|^T[A-Z]",
+          "match": true
+        }
+      },
+      {
+        "selector": "class",
+        "format": [
+          "PascalCase"
+        ],
+        "custom": {
+          "regex": "^[A-Z]",
+          "match": true
+        }
+      }
+    ],
+    "@typescript-eslint/explicit-module-boundary-types": [
+      "warn",
+      {
+        "allowArgumentsExplicitlyTypedAsAny": true
+      }
+    ],
+    "@typescript-eslint/camelcase": "off",
+    "no-underscore-dangle": "off",
     "prettier/prettier": [
       "error",
       {
@@ -72,6 +136,14 @@
         "endOfLine": "auto",
         "printWidth": 120
       }
-    ]
+    ],
+    "class-methods-use-this": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "directory": "packages/server/*/tsconfig.json"
+      }
+    }
   }
 }
